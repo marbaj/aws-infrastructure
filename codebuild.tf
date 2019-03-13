@@ -1,5 +1,13 @@
 provider "aws" {}
 
+terraform {
+  backend "s3" {
+    bucket = "${var.terrafom_s3_state}"
+    key    = "state"
+    region = "us-east-2"
+  }
+}
+
 resource "aws_s3_bucket" "infrastructure" {
   bucket = "${var.terrafom_s3_state}"
   acl    = "private"
