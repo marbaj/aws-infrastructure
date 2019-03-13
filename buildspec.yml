@@ -19,9 +19,9 @@ phases:
       # - command
   build:
     commands:
-      - echo "hello"
       - terraform init
-      - terraform apply -auto-approve
+      - terraform apply -auto-approve -var-file="terrafom-${account}.tfvars"
+
   #post_build:
     #commands:
       # - command
