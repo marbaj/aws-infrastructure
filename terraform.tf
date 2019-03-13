@@ -8,9 +8,15 @@ terraform {
   }
 }
 
+variable "account" {}
 
 module "codebuild-infrastructure" {
   source    = "./codebuild",
   repo = "https://github.com/marbaj/aws-infrastructure.git"
-  account = "dev"
+  account = "${var.account}"
+}
+
+module "vpc-main" {
+  source    = "./vpc",
+  account = "${var.account}"
 }
