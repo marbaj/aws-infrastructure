@@ -8,11 +8,6 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "infrastructure" {
-  bucket = "${var.terrafom_s3_state}"
-  acl    = "private"
-}
-
 resource "aws_iam_role" "infrastructure" {
   name = "infrastructure"
 
