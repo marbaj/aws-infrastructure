@@ -51,7 +51,7 @@ resource "aws_iam_role_policy" "infrastructure" {
       "Action": [
         "s3:*"
       ],
-      "Resource": '*'
+      "Resource": "*"
     }
   ]
 }
