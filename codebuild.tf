@@ -9,7 +9,7 @@ terraform {
 }
 
 resource "aws_s3_bucket" "infrastructure" {
-  bucket = "infrastructure"
+  bucket = "infrastructure-11223344"
   acl    = "private"
 }
 
