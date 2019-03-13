@@ -92,11 +92,12 @@ resource "aws_codebuild_project" "infrastructure" {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = "hashicorp/terraform"
     type         = "LINUX_CONTAINER"
-  }
 
-    environment_variable {
-      "account"  = "dev"
-    }
+    # environment_variable {
+    #   account  = "dev"
+    # }
+
+  }
 
   source {
     type            = "GITHUB"
