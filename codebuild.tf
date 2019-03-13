@@ -8,6 +8,11 @@ terraform {
   }
 }
 
+resource "aws_s3_bucket" "infrastructure" {
+  bucket = "infrastructure"
+  acl    = "private"
+}
+
 resource "aws_iam_role" "infrastructure" {
   name = "infrastructure"
 
