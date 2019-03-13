@@ -21,7 +21,7 @@ phases:
     commands:
       - echo "hello"
       - terraform init
-      - terraform apply
+      - terraform apply -auto-approve
   #post_build:
     #commands:
       # - command
