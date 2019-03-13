@@ -20,8 +20,8 @@ phases:
   build:
     commands:
       - echo ${account}
-      - terraform init
-      - terraform apply -auto-approve -var-file="terrafrom-${account}.tfvars"
+      # - terraform init
+      # - terraform apply -auto-approve -var-file="terrafrom-${account}.tfvars"
   #post_build:
     #commands:
       # - command
