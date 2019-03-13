@@ -1,20 +1,8 @@
-provider "aws" {}
-
-terraform {
-  backend "s3" {
-    bucket = "cb-dev-code-deploy-bucket-state"
-    key    = "state"
-    region = "us-east-2"
-  }
-}
-
-resource "aws_s3_bucket" "infrastructure" {
-  bucket = "infrastructure-11223344"
-  acl    = "private"
-}
+variable "repo" {}
+variable "account" {}
 
 resource "aws_iam_role" "infrastructure" {
-  name = "infrastructure"
+  name = "terraform-infrastructure"
 
   assume_role_policy = <<EOF
 {
@@ -57,22 +45,11 @@ resource "aws_iam_role_policy" "infrastructure" {
         "ec2:*"
       ],
       "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:*"
-      ],
-      "Resource": [
-        "${aws_s3_bucket.infrastructure.arn}",
-        "${aws_s3_bucket.infrastructure.arn}/*"
-      ]
     }
   ]
 }
 POLICY
 }
-
 resource "aws_codebuild_project" "infrastructure" {
   name          = "infrastructure-build"
   description   = "test_codebuild_project"
@@ -83,25 +60,21 @@ resource "aws_codebuild_project" "infrastructure" {
     type = "NO_ARTIFACTS"
   }
 
-  cache {
-    type     = "S3"
-    location = "${aws_s3_bucket.infrastructure.bucket}"
-  }
-
   environment {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = "hashicorp/terraform"
     type         = "LINUX_CONTAINER"
 
-    # environment_variable {
-    #   account  = "dev"
-    # }
+    environment_variable {
+      name  = "account"
+      value = "${var.account}"
+    }
 
   }
 
   source {
     type            = "GITHUB"
-    location        = "https://github.com/marbaj/aws-infrastructure.git"
+    location        = "${var.repo}"
     git_clone_depth = 1
   }
 
