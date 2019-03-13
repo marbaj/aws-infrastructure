@@ -20,18 +20,8 @@ phases:
   build:
     commands:
       - terraform init
-      - terraform apply -auto-approve -var-file="terrafom-${account}.tfvars"
+      - terraform apply -auto-approve -var-file="terrafom-dev.tfvars"
   #post_build:
     #commands:
       # - command
       # - command
-#artifacts:
-  #files:
-    # - location
-    # - location
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
-#cache:
-  #paths:
-    # - paths
