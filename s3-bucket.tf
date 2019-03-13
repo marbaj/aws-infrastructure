@@ -8,14 +8,14 @@ terraform {
   }
 }
 
-resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "dedicated"
+# resource "aws_vpc" "main" {
+#   cidr_block       = "10.0.0.0/16"
+#   instance_tenancy = "dedicated"
 
-  tags = {
-    Name = "main"
-  }
-}
+#   tags = {
+#     Name = "main"
+#   }
+# }
 
 # resource "aws_subnet" "main" {
 #   vpc_id     = "${aws_vpc.main.id}"
