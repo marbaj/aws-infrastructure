@@ -45,6 +45,13 @@ resource "aws_iam_role_policy" "infrastructure" {
         "ec2:*"
       ],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": '*'
     }
   ]
 }
