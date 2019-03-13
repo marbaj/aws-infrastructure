@@ -2,7 +2,7 @@ provider "aws" {}
 
 terraform {
   backend "s3" {
-    bucket = "${var.terrafom_s3_state}"
+    bucket = "cb-dev-code-deploy-bucket-state"
     key    = "state"
     region = "us-east-2"
   }
